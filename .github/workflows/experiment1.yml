@@ -1,0 +1,34 @@
+name: Experiment 1
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'What is thy name?'
+        required: true
+        type: string
+jobs:
+  job_1:
+   runs-on: ubuntu-latest
+   steps:
+     - name: Outputting the name
+       run: |
+         echo "Name: ${{ inputs.name}}"
+     - run: "echo Job: ${{ github.job }}"
+
+  job_2:
+    runs-on: ubuntu-latest
+    needs: job_1
+    steps:
+      - run: "echo Job: ${{ github.job }}"
+    
+  job_3:
+    runs-on: ubuntu-latest
+    needs: job_1
+    steps:
+      - run: "echo Job: ${{ github.job }}"
+
+  job_4:
+    runs-on: ubuntu-latest
+    needs: [ job_2, job_3 ]
+    steps:
+      - run: "echo Job: ${{ github.job }}"
