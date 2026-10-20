@@ -1,0 +1,11 @@
+name: Experiment 2
+on:
+  workflow_dispatch
+jobs:
+  set-environment:
+    runs-on: ubuntu-latest
+    steps:
+      - env:
+          WhoToGreet: Wolfgang
+        run: echo "$WhoToGreet"
+    
